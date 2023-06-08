@@ -14,30 +14,28 @@ class Juego {
         * - Repartir dos cartas al jugador
         * - Repartir dos cartas al crupier
         */
-      this.baraja = new Baraja();
-      this.baraja.mezclar();
-  
-      this.jugador = new Jugador();
-      this.crupier = new Jugador();
-  
-      this.jugador.agregarCarta(this.baraja.sacarCarta());
-      this.crupier.agregarCarta(this.baraja.sacarCarta());
-      this.jugador.agregarCarta(this.baraja.sacarCarta());
-      this.crupier.agregarCarta(this.baraja.sacarCarta());
+      
     }
   
-    juegoTerminado() {
-      return this.jugador.mano.getValor() > 21 || this.crupier.mano.getValor() > 21
-        || this.jugador.mano.cartas.length === 5 || this.crupier.mano.cartas.length === 5;
-    }
     mostrarManos(oculto=false) {
-        console.log(`El jugador tiene: ${this.jugador.mostrarMano()} (total: ${this.jugador.mano.getValor()})`);
-        console.log(`El crupier tiene: ${this.crupier.mostrarMano(oculto)} (total: ${this.crupier.mano.getValor()})`);
+        /*
+        * TODO: Mostrar en pantalla las cartas del jugador y del crupier. 
+        * Si oculto es true, ocultar la segunda carta del crupier
+        */
     }
   
     jugar = async () =>{
-        while (!this.jugador.plantado) {
-            this.mostrarManos();
+        /*
+        * TODO: mientras el jugador no se haya plantado:
+        * - Mostrar las cartas del jugador y del crupier
+        * - Preguntar al jugador si quiere pedir otra carta o plantarse
+        * - Si el jugador pide otra carta, repartir una carta al jugador
+        * - Si el jugador se planta, cambiar la propiedad plantado a true
+        */
+        while (false) {
+            /*
+            * TODO: Mostrar las cartas del jugador y del crupier
+            */
             const question ={
                 type: "text",
                 name: "opcion",
@@ -46,37 +44,35 @@ class Juego {
             
             const response = await prompt(question);
             const opcion = response.opcion;
-            if (opcion === "s") {
-                this.jugador.agregarCarta(this.baraja.sacarCarta());
-            }
-            else{
-                this.jugador.plantarse();
-            }
+            
+            /* 
+            * TODO: Si el jugador pide otra carta, repartir una carta al jugador
+            * Si el jugador se planta, cambiar la propiedad plantado a true
+            */
         }
-        while (!this.crupier.plantado) {
-  
-            if (this.crupier.mano.getValor() < 17 || (this.crupier.mano.getValor() < this.jugador.mano.getValor()) && this.jugador.mano.getValor() <= 21) {
-            this.crupier.agregarCarta(this.baraja.sacarCarta());
-            }
-            else{
-            this.crupier.plantarse();
-            }
+        /*
+        * TODO: Mientras el crupier no se haya plantado:
+        * - Crear una etratégia para el crupier
+        * - Si el crupier pide otra carta, repartir una carta al crupier
+        * - Si el crupier se planta, cambiar la propiedad plantado a true
+        */
+        while (false) {
+            
         }
-  
-        console.log(`El jugador tiene: ${this.jugador.mostrarMano()} (total: ${this.jugador.mano.getValor()})`);
-        console.log(`El crupier tiene: ${this.crupier.mostrarMano()} (total: ${this.crupier.mano.getValor()})`);
-    
-        if (this.jugador.mano.getValor() > 21) {
-            console.log("Has perdido");
-        } else if (this.crupier.mano.getValor() > 21) {
-            console.log("Has ganado");
-        } else if (this.jugador.mano.getValor() > this.crupier.mano.getValor()) {
-            console.log("Has ganado");
-        } else if (this.crupier.mano.getValor() > this.jugador.mano.getValor()) {
-            console.log("Has perdido");
-        } else {
-            console.log("Empate");
-        }
+        /*
+        * TODO: Mostrar la mano final del jugador y del crupier
+        */
+
+        /*
+        * TODO: Mostrar el resultado del juego
+        * - Si el jugador se ha pasado de 21, ha perdido
+        * - Si el crupier se ha pasado de 21, ha ganado
+        * - Si el jugador tiene más puntos que el crupier, ha ganado
+        * - Si el crupier tiene más puntos que el jugador, ha perdido
+        * - Si el jugador y el crupier tienen los mismos puntos, ha empatado
+        * - ...
+        */
+        
     }
   }
 
