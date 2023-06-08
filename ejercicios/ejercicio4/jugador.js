@@ -4,28 +4,33 @@ import Baraja from "../ejercicio2/baraja.js";
 
 class Jugador {
     constructor() {
-      this.mano = new Mano();
-      this.plantado = false;
+        /*
+        * TODO: Inicializar la propiedad mano como un objeto de la clase Mano y la propiedad plantado a false
+        */
     }
   
     agregarCarta(carta) {
-      this.mano.agregarCarta(carta);
+        /*
+        * TODO: Agregar una carta a la mano
+        * Si el valor de la mano es mayor que 21, plantarse
+        */
     }
     plantarse() {
-      this.plantado = true;
+      /*
+      * TODO: Cambiar la propiedad plantado a true
+      */
     }
   
     mostrarMano(oculto=false) {
-      let cartas = this.mano.cartas.map((carta,index) => {
-        let texto = "";
-          if (index !== 0 && oculto) {
-              texto = "? ";
-          } else {
-              texto = `${carta.valor} de ${carta.palo}`;
-          }
-          return texto;
-      });
-      return cartas.join(", ");
+        /*
+        * TODO: Devolver un string con las cartas de la mano
+        * Si oculto es true, mostrar sólo la primera carta, el resto mostrarlas como "?"
+        * Ejemplo: "A de corazones, ?"
+        * Si oculto es false, mostrar todas las cartas
+        * Ejemplo: "A de corazones, 2 de corazones"
+        */
+        
+        return " no tiene cartas";
     }
   }
 

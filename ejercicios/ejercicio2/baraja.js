@@ -3,27 +3,29 @@ import Carta from "../ejercicio1/carta.js";
 
 class Baraja {
     constructor() {
-      this.cartas = [];
-  
-      const palos = ["corazones", "diamantes", "tréboles", "picas"];
-      const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-  
-      for (let palo of palos) {
-        for (let valor of valores) {
-          this.cartas.push(new Carta(palo, valor));
-        }
-      }
+        this.cartas = [];
+        const palos = ["corazones", "diamantes", "tréboles", "picas"];
+        const valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+        /*
+        * TODO: Crear crear una carta de cada palo y valor y guardarla en la baraja
+        */
     }
   
     mezclar() {
-      for (let i = this.cartas.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [this.cartas[i], this.cartas[j]] = [this.cartas[j], this.cartas[i]];
-      }
+        /* 
+        * TODO: Mezclar las cartas de la baraja
+        * SUGERENCIA DE LECTURA: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+        * SUGERENCIA DE LECTURA: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+        * No devuelve nada
+        */
     }
   
     sacarCarta() {
-      return this.cartas.pop();
+        /*
+        * TODO: Sacar una carta de la baraja
+        * se debe sacar la última carta de la baraja y devolverla
+        */
+       return new Carta("corazones", "A");
     }
   }
 

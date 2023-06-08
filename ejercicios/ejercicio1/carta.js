@@ -2,18 +2,17 @@ import { fileURLToPath } from "url";
 
 class Carta {
     constructor(palo, valor) {
-      this.palo = palo;
-      this.valor = valor;
+        // TODO: Guardar palo y valor en propiedades
     }
   
     getValor() {
-      if (this.valor === "A") {
-        return 11;
-      } else if (["J", "Q", "K"].includes(this.valor)) {
-        return 10;
-      } else {
-        return parseInt(this.valor);
-      }
+        /* 
+        * TODO: Devolver el valor de la carta
+        * 2-10 valen su valor
+        * J, Q, K valen 10
+        * A vale 11 
+        */
+       return 0;
     }
   }
 
