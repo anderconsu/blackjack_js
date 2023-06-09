@@ -2,8 +2,11 @@ import { fileURLToPath } from "url";
 
 class Carta {
     constructor(palo, valor) {
+        this.palo = palo
+        this.valor = valor
         // TODO: Guardar palo y valor en propiedades
-    }
+
+    }   
   
     getValor() {
         /* 
@@ -12,7 +15,13 @@ class Carta {
         * J, Q, K valen 10
         * A vale 11 
         */
-       return 0;
+        if (this.valor === "A") {
+            return 11
+        } else if (this.valor === "J" || this.valor === "Q" || this.valor === "K") {
+            return 10
+        } else {
+            return parseInt(this.valor)
+        }
     }
   }
 

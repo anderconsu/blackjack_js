@@ -7,6 +7,8 @@ class Jugador {
         /*
         * TODO: Inicializar la propiedad mano como un objeto de la clase Mano y la propiedad plantado a false
         */
+        this.mano = new Mano();
+        this.plantado = false;
     }
   
     agregarCarta(carta) {
@@ -14,11 +16,17 @@ class Jugador {
         * TODO: Agregar una carta a la mano
         * Si el valor de la mano es mayor que 21, plantarse
         */
+        this.mano.agregarCarta(carta);
+        if (this.mano.getValor() > 21) {
+            this.plantarse()
+        }
     }
     plantarse() {
       /*
       * TODO: Cambiar la propiedad plantado a true
       */
+     this.plantado = true;
+
     }
   
     mostrarMano(oculto=false) {
@@ -29,10 +37,50 @@ class Jugador {
         * Si oculto es false, mostrar todas las cartas
         * Ejemplo: "A de corazones, 2 de corazones"
         */
+        if (this.mano.cartas) {
+            
+            if (oculto === true) {
+             return `${this.mano.cartas[0].valor} de ${this.mano.cartas[0].palo}, ?`;
+            }
+            else{
+                let str = "";
+                for (let carta of this.mano.cartas) {
+                    str += `${carta.valor} de ${carta.palo}, `;
+                }
+                return str ;
+            }
+        }
         
-        return " no tiene cartas";
+        else{
+            return " no tiene cartas";
+        }
     }
   }
+
+  const baraja = new Baraja();
+  const jugador = new Jugador();
+  
+  // mezcla las cartas en la baraja
+  baraja.mezclar();
+  
+  // saca dos cartas de la baraja y las agrega a la mano del jugador
+  const carta1 = baraja.sacarCarta();
+  jugador.agregarCarta(carta1);
+  
+  const carta2 = baraja.sacarCarta();
+  jugador.agregarCarta(carta2);
+  
+  // muestra la mano del jugador
+  console.log(`Mano del jugador: ${jugador.mostrarMano()}`);
+  
+  // el jugador se planta
+  jugador.plantarse();
+  
+  // muestra la mano del jugador ocultando la segunda carta
+  console.log(`Mano del jugador (ocultando una carta): ${jugador.mostrarMano(true)}`);
+
+
+
 
     export default Jugador;
 
