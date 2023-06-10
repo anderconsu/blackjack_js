@@ -14,6 +14,14 @@ class Juego {
         * - Repartir dos cartas al jugador
         * - Repartir dos cartas al crupier
         */
+        this.baraja = new Baraja();
+        this.baraja.mezclar()
+        this.jugador = new Jugador();
+        this.crupier = new Jugador();
+        this.jugador.agregarCarta(this.baraja.sacarCarta())
+        this.jugador.agregarCarta(this.baraja.sacarCarta())
+        this.crupier.agregarCarta(this.baraja.sacarCarta())
+        this.crupier.agregarCarta(this.baraja.sacarCarta())
       
     }
   
@@ -22,6 +30,8 @@ class Juego {
         * TODO: Mostrar en pantalla las cartas del jugador y del crupier. 
         * Si oculto es true, ocultar la segunda carta del crupier
         */
+       console.log(`Mano del Jugador: ${this.jugador.mostrarMano(false)}`)
+       console.log(`Mano del Crupier: ${this.crupier.mostrarMano(oculto)}`)
     }
   
     jugar = async () =>{
@@ -32,10 +42,12 @@ class Juego {
         * - Si el jugador pide otra carta, repartir una carta al jugador
         * - Si el jugador se planta, cambiar la propiedad plantado a true
         */
-        while (false) {
+       let jugarAgain = true
+        while (this.jugador.plantado === false) {
             /*
             * TODO: Mostrar las cartas del jugador y del crupier
             */
+            this.mostrarManos(true)
             const question ={
                 type: "text",
                 name: "opcion",
@@ -49,6 +61,18 @@ class Juego {
             * TODO: Si el jugador pide otra carta, repartir una carta al jugador
             * Si el jugador se planta, cambiar la propiedad plantado a true
             */
+           if(opcion === "s"){
+               this.jugador.agregarCarta(this.baraja.sacarCarta())
+               if(this.jugador.mano.getValor() > 21){
+                   this.jugador.plantado = true
+               }
+               
+           }else if(opcion === "n"){
+               this.jugador.plantado = true
+               
+           }else{
+               console.log("Opcion invalida")
+           }
         }
         /*
         * TODO: Mientras el crupier no se haya plantado:
@@ -56,13 +80,21 @@ class Juego {
         * - Si el crupier pide otra carta, repartir una carta al crupier
         * - Si el crupier se planta, cambiar la propiedad plantado a true
         */
-        while (false) {
-            
+        while (this.crupier.plantado === false) {
+        if (this.jugador.mano.getValor() > 21){
+            this.crupier.plantado = true
+        }else{
+            if(this.jugador.mano.getValor() > this.crupier.mano.getValor()){
+                this.crupier.agregarCarta(this.baraja.sacarCarta())
+            }else{
+                this.crupier.plantado = true
+            }
+         }
         }
+
         /*
         * TODO: Mostrar la mano final del jugador y del crupier
         */
-
         /*
         * TODO: Mostrar el resultado del juego
         * - Si el jugador se ha pasado de 21, ha perdido
@@ -72,8 +104,23 @@ class Juego {
         * - Si el jugador y el crupier tienen los mismos puntos, ha empatado
         * - ...
         */
+       this.mostrarManos(false)
+       if(this.crupier.mano.getValor() > 21){
+           console.log("Has ganado")
+       }else if(this.jugador.mano.getValor() > 21){
+           console.log("El crupier ha ganado")
+       }else if(this.crupier.mano.getValor() > this.jugador.mano.getValor()){
+           console.log("El crupier ha ganado")
+       }else if(this.jugador.mano.getValor() > this.crupier.mano.getValor()){
+           console.log("Has ganado")
+       }else{
+           console.log("Ha empatado")
+       }
+        return;
+    }  
         
     }
-  }
+const juego = new Juego();
+await juego.jugar();
 
     export default Juego;

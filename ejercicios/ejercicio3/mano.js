@@ -32,8 +32,7 @@ class Mano {
             tieneAs = true;
             valor -= 10;
         }
-      
-  
+
       return valor;
     }
     showMano(){
@@ -45,25 +44,6 @@ class Mano {
         console.log("=====================")
     }
   }
-
-const baraja = new Baraja();
-const mano = new Mano();
-
-// mezcla las cartas en la baraja
-baraja.mezclar();
-
-// saca dos cartas de la baraja y las agrega a la mano
-const carta1 = baraja.sacarCarta();
-mano.agregarCarta(carta1);
-
-const carta2 = baraja.sacarCarta();
-mano.agregarCarta(carta2);
-
-// calcula el valor de la mano
-const valor = mano.getValor();
-
-mano.showMano()
-console.log(`Valor de la mano: ${valor}`);
 
   export default Mano;
 
